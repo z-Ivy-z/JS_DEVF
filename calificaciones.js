@@ -9,7 +9,7 @@ else if(calificacion>=90){
 else if(calificacion >= 75 && calificacion <= 89){
     console.log("El estudiante aprueba con BIEN")
 }
- else if(calificacion >= 60 && calificacion <= 74){
+else if(calificacion >= 60 && calificacion <= 74){
     console.log("El estudiante aprueba con SUFICIENTE")
 }
 else {
