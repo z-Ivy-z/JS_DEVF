@@ -116,3 +116,32 @@ console.log("\n=== PALABRA MÁS LARGA ===");
 const resultado = encontrarPalabraMasLarga(descripcion);
 
 console.log(`La palabra más larga es: ${resultado}`);
+
+
+const regalos = [
+    "Balón",
+    "Muñeca",
+    "Videojuego",
+    "Bicicleta",
+    "Rompecabezas",
+    "Patines"
+];
+
+const buscarRegalo = (lista, regaloBuscado, indice = 0) => {
+
+    if (indice >= lista.length) {
+        return `"${regaloBuscado}" no está en la lista de regalos.`;
+    }
+
+    if (lista[indice] === regaloBuscado) {
+        return `"${regaloBuscado}" se encontró en la posición ${indice}.`;
+    }
+
+    return buscarRegalo(lista, regaloBuscado, indice + 1);
+};
+
+console.log("\n=== BÚSQUEDA RECURSIVA ===");
+
+console.log(buscarRegalo(regalos, "Bicicleta"));
+console.log(buscarRegalo(regalos, "Patines"));
+console.log(buscarRegalo(regalos, "Tablet"));
