@@ -1,45 +1,58 @@
-const listaDeCompras = [];
+const productos = [
+    { nombre: "Leche", precio: 35, categoria: "Lácteos" },
+    { nombre: "Pan", precio: 25, categoria: "Panadería" },
+    { nombre: "Televisión", precio: 4500, categoria: "Electrónica" },
+    { nombre: "Manzana", precio: 18, categoria: "Frutas" },
+    { nombre: "Cuaderno", precio: 80, categoria: "Papelería" }
+];
 
-const agregarProducto = (producto) => {
-    if (!listaDeCompras.includes(producto)) {
-        listaDeCompras.push(producto);
-        console.log(`${producto} agregado a la lista.`);
-    } else {
-        console.log(`${producto} ya existe en la lista.`);
-    }
-};
+console.log("Productos originales:");
+console.log(productos);
 
-const eliminarProducto = (producto) => {
-    const indice = listaDeCompras.indexOf(producto);
+const productosBaratos = productos.filter(
+    producto => producto.precio < 100
+);
 
-    if (indice !== -1) {
-        listaDeCompras.splice(indice, 1);
-        console.log(`${producto} eliminado de la lista.`);
-    } else {
-        console.log(`${producto} no se encuentra en la lista.`);
-    }
-};
+console.log("\nProductos menores a $100:");
+console.log(productosBaratos);
 
-const mostrarLista = () => {
-    console.log("Lista de compras:");
 
-    if (listaDeCompras.length === 0) {
-        console.log("La lista está vacía.");
-        return;
-    }
+const productosOrdenados = [...productosBaratos].sort(
+    (a, b) => a.nombre.localeCompare(b.nombre)
+);
 
-    listaDeCompras.forEach((producto, indice) => {
-        console.log(`${indice + 1}. ${producto}`);
-    });
-};
+console.log("\nProductos ordenados alfabéticamente:");
+console.log(productosOrdenados);
 
-agregarProducto("Donas");
-agregarProducto("Manzanas");
-agregarProducto("Jugos");
-agregarProducto("Jugos"); 
 
-mostrarLista();
+const nombresProductos = productosOrdenados.map(
+    producto => producto.nombre
+);
 
-eliminarProducto("Donas");
+console.log("\nNombres de los productos:");
+console.log(nombresProductos);
 
-mostrarLista();
+
+const totalInventario = productos.reduce(
+    (acumulador, producto) => acumulador + producto.precio,
+    0
+);
+
+console.log("\nValor total del inventario:");
+console.log(`$${totalInventario}`);
+
+
+const existeProductoCaro = productos.some(
+    producto => producto.precio > 1000
+);
+
+console.log("\n¿Existe algún producto mayor a $1000?");
+console.log(existeProductoCaro);
+
+
+const preciosValidos = productos.every(
+    producto => producto.precio > 0
+);
+
+console.log("\n¿Todos los productos tienen precio válido?");
+console.log(preciosValidos);
