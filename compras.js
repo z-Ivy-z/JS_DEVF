@@ -3,7 +3,7 @@ const productos = [
     { nombre: "Pan", precio: 25, categoria: "Panadería" },
     { nombre: "Televisión", precio: 4500, categoria: "Electrónica" },
     { nombre: "Manzana", precio: 18, categoria: "Frutas" },
-    { nombre: "Cuaderno", precio: 80, categoria: "Papelería" }
+    { nombre: "Melón", precio: 45, categoria: "Frutas" }
 ];
 
 console.log("Productos originales:");
@@ -16,7 +16,6 @@ const productosBaratos = productos.filter(
 console.log("\nProductos menores a $100:");
 console.log(productosBaratos);
 
-
 const productosOrdenados = [...productosBaratos].sort(
     (a, b) => a.nombre.localeCompare(b.nombre)
 );
@@ -24,14 +23,12 @@ const productosOrdenados = [...productosBaratos].sort(
 console.log("\nProductos ordenados alfabéticamente:");
 console.log(productosOrdenados);
 
-
 const nombresProductos = productosOrdenados.map(
     producto => producto.nombre
 );
 
 console.log("\nNombres de los productos:");
 console.log(nombresProductos);
-
 
 const totalInventario = productos.reduce(
     (acumulador, producto) => acumulador + producto.precio,
@@ -41,7 +38,6 @@ const totalInventario = productos.reduce(
 console.log("\nValor total del inventario:");
 console.log(`$${totalInventario}`);
 
-
 const existeProductoCaro = productos.some(
     producto => producto.precio > 1000
 );
@@ -49,10 +45,44 @@ const existeProductoCaro = productos.some(
 console.log("\n¿Existe algún producto mayor a $1000?");
 console.log(existeProductoCaro);
 
-
 const preciosValidos = productos.every(
     producto => producto.precio > 0
 );
 
 console.log("\n¿Todos los productos tienen precio válido?");
 console.log(preciosValidos);
+
+
+
+const buscarInicialCoincidente = (lista) => {
+
+    let puntero1 = 0;
+    let puntero2 = 1;
+
+    while (puntero2 < lista.length) {
+
+        const inicial1 = lista[puntero1].nombre[0].toUpperCase();
+        const inicial2 = lista[puntero2].nombre[0].toUpperCase();
+
+        console.log(
+            `Comparando ${lista[puntero1].nombre} (${inicial1}) con ${lista[puntero2].nombre} (${inicial2})`
+        );
+
+        if (inicial1 === inicial2) {
+            console.log("\nCoincidencia encontrada:");
+            console.log(lista[puntero1].nombre);
+            console.log(lista[puntero2].nombre);
+
+            return [lista[puntero1].nombre, lista[puntero2].nombre];
+        }
+
+        puntero1++;
+        puntero2++;
+    }
+
+    console.log("\nNo se encontró ningún par con la misma inicial.");
+    return null;
+};
+
+console.log("\n=== BÚSQUEDA CON PUNTEROS ===");
+buscarInicialCoincidente(productos);
