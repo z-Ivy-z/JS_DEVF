@@ -86,3 +86,33 @@ const buscarInicialCoincidente = (lista) => {
 
 console.log("\n=== BÚSQUEDA CON PUNTEROS ===");
 buscarInicialCoincidente(productos);
+
+
+const encontrarPalabraMasLarga = (texto) => {
+
+    const palabras = texto.split(" ");
+
+    let palabraMasLarga = palabras[0];
+
+    for (let i = 1; i < palabras.length; i++) {
+
+        console.log(
+            `Comparando "${palabras[i]}" (${palabras[i].length}) con "${palabraMasLarga}" (${palabraMasLarga.length})`
+        );
+
+        if (palabras[i].length > palabraMasLarga.length) {
+            palabraMasLarga = palabras[i];
+        }
+    }
+
+    return palabraMasLarga;
+};
+
+const descripcion =
+    "Leche Pan Televisión Manzana Melón Refrigerador Computadora";
+
+console.log("\n=== PALABRA MÁS LARGA ===");
+
+const resultado = encontrarPalabraMasLarga(descripcion);
+
+console.log(`La palabra más larga es: ${resultado}`);
